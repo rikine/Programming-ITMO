@@ -8,10 +8,6 @@ public:
 	const char* what() const override {
 		return msg;
 	}
-
-	~Out_Of_Range() {
-		delete[] msg;
-	}
 };
 
 template<class T>
@@ -373,6 +369,8 @@ inline T & circular_buf<T>::operator[](int i)
 template<class T>
 inline void circular_buf<T>::erase(const_iterator it)
 {
+	if (size == 0)
+		throw Out_Of_Range();
 	int to = end() - it - 1;
 	int from = size - to - 1;
 
@@ -387,6 +385,9 @@ inline void circular_buf<T>::erase(const_iterator it)
 template<class T>
 inline void circular_buf<T>::erase(iterator it)
 {
+	if (size == 0)
+		throw Out_Of_Range();
+
 	int to = end() - it - 1;
 	int from = size - to - 1;
 
