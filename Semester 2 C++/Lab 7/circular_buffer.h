@@ -1,8 +1,17 @@
 #pragma once
 
 class Out_Of_Range : public std::exception {
+	const char *msg;
 public:
-	Out_Of_Range() :exception("Out Of Range") {}
+	Out_Of_Range() : msg("Out Of Range") {}
+
+	const char* what() const override {
+		return msg;
+	}
+
+	~Out_Of_Range() {
+		delete[] msg;
+	}
 };
 
 template<class T>
@@ -159,10 +168,11 @@ const int operator+(const my_iter<T>& a, const my_iter<T>& b) {
 
 template<class T>
 class circular_buf {
-
+public:
 	typedef my_iter<T> iterator;
 	typedef my_iter<const T> const_iterator;
 
+private:
 	T* data;
 	size_t size;
 	size_t capacity;
