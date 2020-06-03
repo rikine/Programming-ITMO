@@ -1,0 +1,3 @@
+/*-lsfml-graphics -lsfml-window -lsfml-system*/
+/*-lglut -lGLU -lGL*/
+/*-lglfw3 -lGL -lX11 -lpthread -lXrandr -lXi –ldl*/
