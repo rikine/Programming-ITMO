@@ -1,6 +1,6 @@
 #include "cube.h"
 
-void Cube::draw()
+void Cube::draw() //просто блять нахуй рисует кубик
 {
     for (auto &c : ok)
         for (auto &c1 : c)
@@ -20,11 +20,11 @@ void Cube::draw()
                     ok[i][j][k] = false;
 
             glTranslated(size / 2, size / 2, 0);
-            glRotatef(rotate[current], 0, 0, 1);
+            glRotatef(rotate[current], 0, 0, 1); // ПРОСТО КРУЧУ ЕПТА
             glTranslated(-size / 2, -size / 2, 0);
             for (i = 0; i < 3; i++)
                 for (j = 0; j < 3; j++)
-                    parts[i][j][k].draw(size / 3 * i, size / 3 * j, size / 3 * k);
+                    parts[i][j][k].draw(size / 3 * i, size / 3 * j, size / 3 * k); //ПРОСТО РИСУЮ ТО ЧТО ПОКРУТИЛ
         }
         else if (current == 2 || current == 3)
         {
@@ -68,9 +68,7 @@ void Cube::rot90(int idx, int sign)
 {
     int i, j, k;
     if (sign == -1)
-        sign = 3;
-    while (sign--)
-    {
+   
         if (idx == 0 || idx == 1)
         {
             //down, up
@@ -104,12 +102,12 @@ void Cube::rot90(int idx, int sign)
                 for (k = 0; k < 3; k++)
                     tmp[j][k].rotateY(), parts[i][j][k] = tmp[j][k];
         }
-    }
+    
 }
 
-void Cube::Rotate(int idx, int angle)
+void Cube::Rotate(int idx, int angle) //3Д поворот
 {
-    if (current == -1 || current == idx)
+    if (current == -1 || current == idx)//если поворачивается текущая грань или не поворач
     {
         if (idx == -1)
             return;
